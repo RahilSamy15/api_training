@@ -15,21 +15,66 @@ public class UserData {
             return this.gender;
         }
     }
+    public final String Id;
     public final String userEmail;
     public final String userName;
     public final String userTweeter;
     public final String userCountry;
-    public final Sex userSex;
-    public final Sex userSexPref;
-    public UserData(@JsonProperty(required = true,value = "userEmail") String userEmail,@JsonProperty(required = true,value ="userName") String userName,@JsonProperty(required = true,value ="userTweeter") String userTweeter,@JsonProperty(required = true,value ="userCountry") String userCountry,@JsonProperty(required = true,value ="userSex") String userSex,@JsonProperty(required = true,value ="userSexPref") String userSexPref){
+    public final String userSex;
+    public final String userSexPref;
+
+    public UserData(@JsonProperty("userEmail") String userEmail,@JsonProperty("userName") String userName,@JsonProperty("userTweeter") String userTweeter,@JsonProperty("userCountry") String userCountry,@JsonProperty("userSex") String userSex,@JsonProperty("userSexPref") String userSexPref){
+
         this.userEmail= userEmail;
         this.userName=userName;
         this.userTweeter=userTweeter;
         this.userCountry= userCountry;
-        this.userSex= Sex.valueOf(userSex);
-        this.userSexPref= Sex.valueOf(userSexPref);
+        this.userSex= userSex;
+        this.userSexPref= userSexPref;
+        this.Id = userEmail.concat("ID11");
+    }
+    public UserData(String name, String twitter) {
+        this.userEmail = "";
+        this.userCountry = "";
+        this.userName = name;
+        this.userSex="";
+        this.userSexPref="";
+        this.userTweeter = twitter;
+        this.Id = userEmail.concat("ID11");
+    }
+    @Override
+    public String toString() {
+        return "{" +
+            "\"userEmail\":\"" + userEmail + '"' +
+            ",\"userName\":\"" + userName + '"' +
+            ",\"userTweeter\":\"" + userTweeter + '"' +
+            ",\"userCountry\":\"" + userCountry + '"' +
+            ",\"userSex\":\"" + userSex + '"' +
+            ",\"userSexPref\":\"" + userSexPref + '"' +
+            '}';
     }
 
+    public String getUserId(){ return this.Id; }
+    public String getUserEmail() { return this.userEmail; }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserTweeter() {
+        return userTweeter;
+    }
+
+    public String getUserCountry() {
+        return userCountry;
+    }
+
+    public String getSex() {
+        return userSex;
+    }
+
+    public String getSexPref() {
+        return userSexPref;
+    }
 
 }
